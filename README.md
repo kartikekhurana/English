@@ -60,12 +60,12 @@ English follows Python Convention : True , False , None
 --------------------------------------------------------------------------------------------------------------------------------------------
 PRINT AND RETURN STATEMENT:
 
-display age 
+display age ,
 display "hello world"
 
 *******Display is the main keyword*******
 
-Return age
+Return age , 
 return "hello world"
 
 --------------------------------------------------------------------------------------------------------------------------------------------
