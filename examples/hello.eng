@@ -5,3 +5,19 @@ display age
 for loop i from 0 to 5:
     display i 
 end loop
+
+
+if age > 18:
+    display "Adult"
+else if age > 12:
+    display "Teen"
+else:
+    display "Child"
+end if
+
+
+create variable number = 0
+while loop number < 5:
+    display number
+    number = number + 1
+end loop
