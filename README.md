@@ -1,142 +1,256 @@
-Vision: English as an executable pseudocode language
+# English — An Executable Pseudocode Language
 
-Goal :
-(1) Allow programmer to write code that reads like strucutred instructions while remaining easy to compile
-(2)English source code is transpiled into python and then exectued
+> Write code that reads like structured English. Transpiled to Python and executed.
 
---------------------------------------------------------------------------------------------------------------------------------------------
-CURRENT EXECUTION PIPELINE:
-hello.eng->Output.py->Python Interpretor->Program Output
+---
 
-Ex:
-English:
-Create Variable age = 21
-display age 
+## Vision
 
-Generated python:
-age = 21
-print(21)
+Allow programmers to write code that reads like structured instructions while remaining easy to compile. English source code is transpiled into Python and then executed.
 
-Result : 21
+---
 
---------------------------------------------------------------------------------------------------------------------------------------------
+## Execution Pipeline
 
-FUTURE EXECUTION PIPELINE
-user.eng->Lexer->Parser->AST->Python Generator->output.py->Python Interpretor->Program.py
---------------------------------------------------------------------------------------------------------------------------------------------
+**Current**
+```
+hello.eng → output.py → Python Interpreter → Program Output
+```
 
-SYNTAX
-All blocking open statements ends with a colon
+**Example**
 
-Ex:
-if age > 18 :
-for loop i from 1 to 100 :
-create function takes(a,b)
-
-Blocks are closed using "end" statements
-Ex:
-end if 
-end loop
-end function
-
-
-
-*******Identation will be used for improving readability******
-*******Block termination is controlled by end statement******
-
-VARIABLES:
-(1)Mutable variable:
+*English source:*
+```
 Create variable age = 21
-// we can re-assign values by : variable = 22
+display age
+```
 
-(2)Immutable variable
-Create constant pi = 3.1456
-// we cannot re-assign values here
+*Generated Python:*
+```python
+age = 21
+print(age)
+```
 
-BOOLEAN:
-English follows Python Convention : True , False , None
+*Result:*
+```
+21
+```
 
+---
 
---------------------------------------------------------------------------------------------------------------------------------------------
-PRINT AND RETURN STATEMENT:
+**Future**
+```
+user.eng → Lexer → Parser → AST → Python Generator → output.py → Python Interpreter → Program Output
+```
 
-display age ,
-display "hello world"
+---
 
-*******Display is the main keyword*******
+## Syntax Rules
 
-Return age , 
-return "hello world"
+- All block-opening statements end with a colon `:`
+- Blocks are closed with `end` statements
+- Indentation is used for readability
+- Block termination is controlled by `end` statements, not indentation
 
---------------------------------------------------------------------------------------------------------------------------------------------
-OPERATIONS
-COMPARISON OPERATORS
-(1) ==
-(2) = 
-(3) != 
-(4) <
-(5) > 
-(6) <= 
-(7) >= 
-
-LOGICAL OPERATORS
-(1) and
-(2) or
-(3) not
-
-ARTHEMATIC OPERATORS
-(1) +
-(2) - 
-(3) * 
-(4) /
-(5) %
-
---------------------------------------------------------------------------------------------------------------------------------------------
-ARRAYS:
-Array Creation:
-create array nums = [1,2,3,4]
-
-Empty Array:
-create array nums = []
-
-Accessing elements:
-nums of i -> generated python -> nums[i]
-
-Ex : 
-display nums of i -> generated python -> print(nums[i])
-
-Assignment of elements:
-nums of 0 = 100 -> generated python -> nums[0] = 100
-
-Length of array:
-length(nums)
-
-operations:
-Append: Append 5 to nums
-Remove: remove 5 from nums
-Insert: insert 10 at 2 in nums
-Pop : pop nums
-clear : clear nums
-
---------------------------------------------------------------------------------------------------------------------------------------------
-CODITIONAL STATEMENTS:
-If 
-else if 
-if
+```
+if age > 18 :
+    ...
 end if
 
---------------------------------------------------------------------------------------------------------------------------------------------
-LOOPS:
-Ex:
-For : for loop i from <first value> to <second value>
-While : while loop <condition> 
+for loop i from 1 to 100 :
+    ...
+end loop
 
---------------------------------------------------------------------------------------------------------------------------------------------
-Function:
-Ex :  create a function name sum which takes a , b as parameters
-Declartion : create function sum takes(a,b):
-ending : end function 
+create function sum takes(a, b) :
+    ...
+end function
+```
 
-//how to call the function
-Function call -> sum(5,10)
+---
 
+## Variables
+
+**Mutable**
+```
+create variable age = 21
+age = 22
+```
+
+**Immutable**
+```
+create constant pi = 3.1456
+```
+> Constants cannot be reassigned after declaration.
+
+**Boolean** — follows Python convention: `True`, `False`, `None`
+
+---
+
+## Display & Return
+
+```
+display age
+display "hello world"
+
+return age
+return "hello world"
+```
+
+> `display` is the primary output keyword.
+
+---
+
+## Operators
+
+**Comparison**
+
+| English Syntax | Meaning |
+|---|---|
+| `==` | Equal to (strict) |
+| `=` | Equal to |
+| `!=` | Not equal to |
+| `<` | Less than |
+| `>` | Greater than |
+| `<=` | Less than or equal |
+| `>=` | Greater than or equal |
+
+**Logical**
+
+| Keyword | Meaning |
+|---|---|
+| `and` | Logical AND |
+| `or` | Logical OR |
+| `not` | Logical NOT |
+
+**Arithmetic**
+
+| Symbol | Operation |
+|---|---|
+| `+` | Addition |
+| `-` | Subtraction |
+| `*` | Multiplication |
+| `/` | Division |
+| `%` | Modulo |
+
+---
+
+## Arrays
+
+```
+create array nums = [1, 2, 3, 4]
+create array nums = []
+```
+
+**Accessing elements**
+```
+display nums of i          → print(nums[i])
+```
+
+**Assigning elements**
+```
+nums of 0 = 100            → nums[0] = 100
+```
+
+**Length**
+```
+length(nums)               → len(nums)
+```
+
+**Operations**
+
+| English | Python |
+|---|---|
+| `append 5 to nums` | `nums.append(5)` |
+| `remove 5 from nums` | `nums.remove(5)` |
+| `insert 10 at 2 in nums` | `nums.insert(2, 10)` |
+| `pop nums` | `nums.pop()` |
+| `clear nums` | `nums.clear()` |
+
+---
+
+## Conditional Statements
+
+```
+if age > 18 :
+    display "adult"
+else if age == 18 :
+    display "just turned 18"
+else :
+    display "minor"
+end if
+```
+
+---
+
+## Loops
+
+**For loop**
+```
+for loop i from 1 to 100 :
+    display i
+end loop
+```
+
+**While loop**
+```
+while loop age < 100 :
+    age = age + 1
+end loop
+```
+
+---
+
+## Functions
+
+**Declaration**
+```
+create function sum takes(a, b) :
+    return a + b
+end function
+```
+
+**Call**
+```
+sum(5, 10)
+```
+
+---
+
+## Comments
+
+```
+// this is a comment
+```
+
+---
+
+## Full Example
+
+```
+create variable age = 21
+create constant limit = 18
+
+create function check_age takes(a) :
+    if a > limit :
+        display "Access granted"
+    else :
+        display "Access denied"
+    end if
+end function
+
+check_age(age)
+```
+
+*Generated Python:*
+```python
+age = 21
+limit = 18
+
+def check_age(a):
+    if a > limit:
+        print("Access granted")
+    else:
+        print("Access denied")
+
+check_age(age)
+```
