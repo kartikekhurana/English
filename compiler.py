@@ -2,7 +2,8 @@ class EnglishCompiler:
     def compile(self,source):
         lines  = source.split("\n")
         output = []
-
+        indent_level = 0
+        
         for line in lines:
             line = line.strip()
 
@@ -14,7 +15,7 @@ class EnglishCompiler:
                     "create variable",""
                 ).strip()
 
-                output.append(statement)
+                output.append(("    " * indent_level)+statement)
 
             elif line.startswith("display"):
                 value = line.replace(
@@ -22,8 +23,22 @@ class EnglishCompiler:
                     ""
                 ).strip()
                 output.append(
-                    f"print({value})"
+                    ("    " * indent_level) + f"print({value})"
                 )
+            
+            elif line.startswith("for loop"):
+                parts = line.split()
+                variable = parts[2]
+                start = parts[4]
+                end = parts[6].replace(":","")
+
+                output.append(
+                    ("    " * indent_level) + f"for {variable} in range({start},{int(end) + 1}):"
+                )
+                indent_level += 1
+            
+            elif line == "end loop":
+                indent_level -= 1
         
         return "\n".join(output)
             
