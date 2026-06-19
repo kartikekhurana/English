@@ -1,0 +1,4 @@
+create variable age = 21
+
+display age
+
